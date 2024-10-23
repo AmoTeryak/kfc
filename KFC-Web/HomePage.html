@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کی اف سی بیرجند - سفارش آنلاین</title>
+    <link rel="stylesheet" href="KFCHome.css">
+    <link href="Favicon.png" rel="shortcut icon" type="image/icon">
+    <style>
+        .main-content {
+            display: flex;
+            max-width: 1500px;
+            margin: 20px auto;
+        }
+        .left-column {
+            width: 25%;
+            padding: 20px;
+        }
+        .right-column {
+            width: 75%;
+            padding: 20px;
+        }
+        .cart-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .cart-empty {
+            color: #ccc;
+        }
+        .order-menu {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .menu-tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+        .tab:hover {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: red;
+        }
+        .tab.active {
+            border-bottom: 3px solid red;
+            color: red;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .category-menu {
+            overflow-x: auto;
+        }
+        .category-scroll {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .category {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .product {
+            width: 30%;
+            margin: 10px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .category img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 5px;
+        }
+        .sub-menu {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sub-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <div class="header-container">
+            <img src="logo.png" alt="لوگو KFC" class="logo">
+            <button class="login-btn">ورود</button>
+        </div>
+    </header>
+
+    <!-- بنر بزرگ -->
+    <div class="banner">
+        <div class="banner-text">
+            <h1>KFC<span class="offer">تا %5 تخفیف</span> </h1>
+            <br>
+            <h3>آدرس: بیرجند-خیابان محلاتی-مقابل پارک آزادگان</h3>
+        </div>
+    </div>
+
+    <!-- بخش اصلی -->
+    <div class="main-content">
+        <!-- ستون سمت چپ (سبد خرید) -->
+        <div class="left-column">
+            <div class="cart-box">
+                <h3>سبد خرید</h3>
+                <div class="cart-empty">
+                    <p>سبد خرید خالی است</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ستون سمت راست (منوی سفارش و محصولات) -->
+        <div class="right-column">
+            <!-- منوی سفارش -->
+            <div class="order-menu">
+                <div class="menu-tabs">
+                    <button class="tab active" onclick="openTab('category-menu')">منوی سفارش</button>
+                    <button class="tab" onclick="openTab('restaurant')">اطلاعات رستوران</button>
+                </div>
+
+                <!-- محتوای تب منوی سفارش -->
+                <div id="category-menu" class="tab-content active">
+                    <div class="category-scroll" >
+                        <div class="category" onclick="openSubMenu('pizza-menu')">
+                            <img src="Categoriesicon/pizza.png" alt="دیترویت">
+                            <p>دیترویت</p>
+                        </div>
+                        <div class="category" onclick="openSubMenu('pizza1-menu')">
+                            <img src="Categoriesicon/pizza.png" alt="پیتزا">
+                            <p>پیتزا</p>
+                        </div>
+                        <div class="category" onclick="openSubMenu('burger-menu')">
+                            <img src="Categoriesicon/icon-burger.png" alt="برگر">
+                            <p>برگر</p>
+                        </div>
+                        <div class="category" onclick="openSubMenu('sandwich-menu')">
+                            <img src="Categoriesicon/icon-sandwich.png" alt="ساندویچ">
+                            <p>ساندویچ</p>
+                        </div>
+                        <div class="category" onclick="openSubMenu('Stromboli-menu')">
+                            <img src="Categoriesicon/Stromboli.png" alt="استرامبلی">
+                            <p>استرامبولی</p>
+                        </div>
+                        <div class="category" onclick="openSubMenu('khoresht-menu')">
+                            <img src="Categoriesicon/icon-khoresht.png" alt="پشقاب داغ">
+                            <p>بشقاب داغ</p>
+                        </div>
+                        <div class="category" onclick="openSubMenu('doner-menu')">
+                            <img src="Categoriesicon/icon-doner.png" alt="کباب ترکی">
+                            <p>کباب ترکی</p>
+                        </div>
+                        <div class="category" onclick="openSubMenu('chickenstrips-menu')">
+                            <img src="Categoriesicon/icon-chickenstrips.png" alt="کنتاکی">
+                            <p>کنتاکی</p>
+                        </div>
+                        <div class="category" onclick="openSubMenu('dessert-menu')">
+                            <img src="Categoriesicon/icon-dessert.png" alt="دسر">
+                            <p>پیش غذا</p>
+                        </div>
+                    </div><br><br>
+                    <!-- زیرمنوی دیترویت -->
+                    <div id="pizza-menu" class="sub-menu">
+                        <h4>دیترویت های موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/De1.jpg" alt="دیترویت استیک بلوچیز ">
+                                <p>دیترویت استیک بلوچیز</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/De2.jpg" alt="دیترویت پولدبیف">
+                                <p>دیترویت پولدبیف</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/De3.jpg" alt="دیترویت چیکن چیمچوری">
+                                <p>دیترویت چیکن چیمچوری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/De4.jpg" alt="دیترویت سوپریم">
+                                <p>دیترویت سوپریم</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زیرمنوی پیتزا -->
+                    <div id="pizza1-menu" class="sub-menu">
+                        <h4>پیتزاهای موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/pizaimg.jpg" alt="پیتزا کراکف دونفره">
+                                <p>پیتزا کراکف دونفره</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/pizaimg1.jpg" alt="پیتزا فلورانس">
+                                <p>پیتزا فلورانس</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/pizaimg2.jpg" alt="پیتزا فلورانس">
+                                <p>پیتزا کراکف یک نفره</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/pizaimg3.jpg" alt="پیتزا فلورانس">
+                                <p>پیتزا یونانی دو نفره</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زیرمنوی برگر -->
+                    <div id="burger-menu" class="sub-menu">
+                        <h4>برگرهای موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/BR.jpg" alt="برگر کلاسیک">
+                                <p>هالوپینو برگر</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/BR1.jpg" alt="برگر اسپشیال">
+                                <p>ماشروم برگر</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/BR2.jpg" alt="برگر اسپشیال">
+                                <p>هالومی برگر</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/BR3.jpg" alt="برگر اسپشیال">
+                                <p>کاراملایز برگر</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زیرمنوی ساندویچ -->
+                    <div id="sandwich-menu" class="sub-menu">
+                        <h4>ساندویچ‌های موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/SW.jpg" alt="ساندویچ ژامبون">
+                                <p>ویژه زاپاتا</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/SW1.jpg" alt="ساندویچ مرغ">
+                                <p>زینگر</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/SW2.jpg" alt="ساندویچ مرغ">
+                                <p>ساندویچ هات داگ پنیری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/SW3.jpg" alt="ساندویچ مرغ">
+                                <p>ساندویچ رست بیف</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زیرمنوی استرامبولی -->
+                    <div id="Stromboli-menu" class="sub-menu">
+                        <h4>استرامبولی های موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/AS.jpg" alt="استرامبولی">
+                                <p>استرامبولی دونر پنیری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/AS1.jpg" alt="استرامبولی">
+                                <p>استرامبولی گوشت و پنیر</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/AS2.jpg" alt="استرامبولی">
+                                <p>استرامبولی مرغ و بادمجان پنیری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/AS3.jpg" alt="استرامبولی">
+                                <p>استرامبولی ژامبون دودی پنیری</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زیرمنوی بشقاب داغ -->
+                    <div id="khoresht-menu" class="sub-menu">
+                        <h4>بشقاب داغ های موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/BH.jpg" alt="بشقاب داغ">
+                                <p>سیب زمینی پنیری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/BH1.jpg" alt="بشقاب داغ">
+                                <p>بشقاب داغ ژامبون</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/BH2.jpg" alt="بشقاب داغ">
+                                <p>بشقاب داغ گوشت</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/BH3.jpg" alt="بشقاب داغ">
+                                <p>بشقاب داغ مخلوط</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زیرمنوی کباب ترکی -->
+                    <div id="doner-menu" class="sub-menu">
+                        <h4>کباب ترکی های موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/KB.jpg" alt="کباب ترکی">
+                                <p>ترکی پرسی پنیری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/KB1.jpg" alt="کباب ترکی">
+                                <p>ترکی پرسی</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/KB2.jpg" alt="کباب ترکی">
+                                <p>ساندویچ ترکی پنیری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/KB3.jpg" alt="کباب ترکی">
+                                <p>ساندویچ ترکی</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زیرمنوی کنتاکی -->
+                    <div id="chickenstrips-menu" class="sub-menu">
+                        <h4>کنتاکی های موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/KT.jpg" alt="کنتاکی">
+                                <p>میگو سوخاری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/KT1.jpg" alt="کنتاکی">
+                                <p>دیس سوخاری نرمال</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/KT2.jpg" alt="کنتاکی">
+                                <p>دیس سوخاری اسپایسی</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/KT3.jpg" alt="کنتاکی">
+                                <p>میگو سوخاری اسپایسی</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زیرمنوی دسر -->
+                    <div id="dessert-menu" class="sub-menu">
+                        <h4>دسر های موجود:</h4>
+                        <div class="product-list">
+                            <div class="product">
+                                <img src="Categoriesicon/DR.jpg" alt="دسر">
+                                <p>سالاد کلم</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/DR1.jpg" alt="دسر">
+                                <p>سیب زمینی</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/DR2.jpg" alt="دسر">
+                                <p>پیاز سوخاری</p>
+                            </div>
+                            <div class="product">
+                                <img src="Categoriesicon/DR3.jpg" alt="دسر">
+                                <p>پاپ کرن نرمال</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- محتوای تب اطلاعات رستوران -->
+                <div id="restaurant" class="tab-content">
+                    <h3>اطلاعات رستوران</h3>
+                    <p>آدرس: بیرجند، خیابان محلاتی، مقابل پارک آزادگان</p>
+                    <p>ساعات کاری: ۱۲ ظهر تا ۱۰ شب</p>
+                    <p>شماره تماس: ۰۹۱۲۳۴۵۶۷۸۹</p><br>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d1644.007338672642!2d59.228293435742835!3d32.84695434473056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3f1a5db06845c2a3%3A0x2ed7f42c6f1cd52a!2zQmlyamFuZCwg2K7bjNin2KjYp9mGINmF2K3ZhNin2KrbjNiMIEtGQywg2LHZiNio2Ycg2LHZiNuMINm-2KfYsdqpINii2LLYp9iv2q_Yp9mG2IwgSXJhbg!3m2!1d32.846481!2d59.2283817!5e0!3m2!1sen!2sfr!4v1729000022345!5m2!1sen!2sfr" width="600" height="450" style="border:2;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>               
+            </div>            
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 KFC</p>
+    </footer>
+
+    <script>
+        function openTab(tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none"; // مخفی کردن همه تب‌ها
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active"); // غیرفعال کردن تمام تب‌ها
+            }
+            document.getElementById(tabName).style.display = "block"; // نمایش تب انتخاب‌شده
+            event.currentTarget.classList.add("active"); // فعال‌سازی تب
+        }
+
+        function openSubMenu(menuName) {
+            var subMenus = document.getElementsByClassName("sub-menu");
+            for (var i = 0; i < subMenus.length; i++) {
+                subMenus[i].style.display = "none"; // مخفی کردن تمام زیرمنوها
+                subMenus[i].classList.remove("active");
+            }
+            document.getElementById(menuName).style.display = "block"; // نمایش زیرمنوی انتخاب‌شده
+            document.getElementById(menuName).classList.add("active");
+        }
+
+        // نمایش پیش‌فرض تب "منوی سفارش"
+        document.getElementById("category-menu").style.display = "block";
+    </script>
+</body>
+</html>
